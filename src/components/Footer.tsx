@@ -32,7 +32,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="mailto:your.email@example.com"
+                href="mailto:liam.strickland96@gmail.com"
                 className="transition-all duration-300 hover:text-teal-200 hover:scale-110 inline-block"
               >
                 <Mail size={24} />

@@ -3,12 +3,18 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 
-import { Inter, Roboto_Mono, Space_Grotesk } from 'next/font/google'
+import { Inter, Roboto_Mono, Space_Grotesk, Albert_Sans } from 'next/font/google'
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+})
+
+const albertSans = Albert_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-albert-sans',
 })
 
 const robotoMono = Roboto_Mono({
@@ -47,7 +53,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${robotoMono.variable} ${spaceGrotesk.variable} ${inter.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all duration-300 ease-in-out`}
+        className={`${geistSans.variable} ${geistMono.variable} ${robotoMono.variable}
+                    ${spaceGrotesk.variable} ${inter.variable} ${albertSans.variable}
+                    antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all duration-300 ease-in-out`}
       >
         {children}
       </body>

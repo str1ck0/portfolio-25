@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <section className="h-screen">
+      <section id="hero" className="h-screen">
         <Hero />
       </section>
       <section id="about" className="min-h-screen">

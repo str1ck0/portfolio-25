@@ -14,16 +14,16 @@ const About = () => {
               style={{ }}/>
         <div className="ml-4">
           <h2 className="text-4xl font-semibold mb-4">About me</h2>
-          <p className="text-md font-sans">
+          <p className="text-md font-albert mb-4">
             Over 2 years of teaching full stack web development at Le Wagon
             in Cape Town and Berlin, I've worked on dozens of Ruby on Rails
             apps and taught hundreds of students to code.
           </p>
-          <p className="text-md font-sans">
+          <p className="text-md font-albert mb-4">
             With a background in graphic design, I'm passionate about creating
             beautiful, intuitive user interfaces and seamless user experiences.
           </p>
-          <p className="text-md font-sans">
+          <p className="text-md font-albert mb-4">
             I'm looking for my next opportunity to grow my skills as a developer
             by joining a forward thinking team and working on meaningful projects.
           </p>

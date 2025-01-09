@@ -23,10 +23,14 @@ const config: Config = {
   				'var(--font-inter)',
                     ...fontFamily.sans
                 ],
-  			mono: [
+  		mono: [
   				'var(--font-roboto-mono)',
                     ...fontFamily.mono
                 ],
+      albert: [
+        'var(--font-albert-sans)',
+                  ...fontFamily.sans
+              ],
   			space: [
   				'var(--font-space-grotesk)',
                     ...fontFamily.sans
