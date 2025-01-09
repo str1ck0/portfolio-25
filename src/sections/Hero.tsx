@@ -5,7 +5,7 @@ const Hero = () => {
         <h1 className="text-5xl sm:text-5xl font-bold">
           G'day, I'm <span className="text-teal-500">Liam</span>
         </h1>
-        <p className="mt-8 text-xl font-sans text-gray-600 dark:text-gray-400">
+        <p className="mt-8 text-xl font-albert text-gray-600 dark:text-gray-400">
           I'm a full stack developer and coding instructor specialized in designing and building web applications using
           Ruby on Rails, React and Next.js. Currently seeking my next opportunity!
         </p>
