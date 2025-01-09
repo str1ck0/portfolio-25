@@ -9,7 +9,7 @@ const Hero = () => {
           I'm a full stack developer and coding instructor specialized in designing and building web applications using
           Ruby on Rails, React and Next.js. Currently seeking my next opportunity!
         </p>
-        <button className="mt-8 px-6 text-xl py-2 rounded-full border-2 border-teal-500 hover:text-white hover:bg-teal-500 transition-all duration-300 ease-in-out">
+        <button className="text-gray-900 dark:text-gray-100 mt-8 px-6 text-xl py-2 rounded-full border-2 border-teal-500 hover:text-white hover:bg-teal-500 transition-all duration-300 ease-in-out">
           View My Work
         </button>
       </div>
