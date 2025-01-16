@@ -1,6 +1,8 @@
 'use client'
 import { ReactNode } from 'react';
 import { useActiveSection } from '@/hooks/useActiveSection'
+import { ReactNode, MouseEvent } from 'react';
+
 
 interface NavLinkProps {
   href: string;
@@ -11,7 +13,7 @@ const NavLink = ({ href, children }: NavLinkProps) => {
   const sectionId = href.replace('#', '');
   const activeSection = useActiveSection();
 
-  const handleClick = (event) => {
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     const element = document.getElementById(sectionId);
     if (element) {
