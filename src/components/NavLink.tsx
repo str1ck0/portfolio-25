@@ -1,7 +1,13 @@
 'use client'
+import { ReactNode } from 'react';
 import { useActiveSection } from '@/hooks/useActiveSection'
 
-const NavLink = ({ href, children }) => {
+interface NavLinkProps {
+  href: string;
+  children: ReactNode;
+}
+
+const NavLink = ({ href, children }: NavLinkProps) => {
   const sectionId = href.replace('#', '');
   const activeSection = useActiveSection();
 
