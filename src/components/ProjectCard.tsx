@@ -1,31 +1,54 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X } from "lucide-react"
+import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 
 const ImageGalleryModal = ({ images, currentIndex, onClose, onNext, onPrev }) => {
+  // Handle keyboard nav
+  const handleKeyPress = useCallback((e) => {
+    if (e.key === 'Escape') onClose();
+    if (e.key === 'ArrowRight') onNext();
+    if (e.key === 'ArrowLeft') onPrev();
+  }, [onClose, onNext, onPrev]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+      document.body.style.overflow = 'unset';
+    };
+  }, [handleKeyPress]);
+
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p4">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p4"
+      onClick={(e) => e.target === e.currentTarget && onClose() }
+    >
       <div className="relative w-full max-w-6xl mx-auto">
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute right-4 top-4 z-50 p-2 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75 transition-all"
+          className="absolute right-4 top-4 z-50 p-2 bg-black/50 rounded-full text-white
+            hover:bg-white/20 hover:scale-110 transition-all duration-300"
         >
           <X size={24} />
         </button>
 
         {/* Main image */}
-        <div className="relative aspect-video w-full rounded-lg overflow-hidden">
+        <div className="relative aspect-video w-full rounded-lg overflow-hidden group">
           <Image
             src={images[currentIndex].url}
             alt={images[currentIndex].alt}
             fill
-            className="object-contain"
+            className="object-contain transform-transition duration-500"
             sizes="(max-width: 1536px) 100vw, 1536px"
             quality={100}
+            priority
           />
         </div>
 
@@ -34,13 +57,17 @@ const ImageGalleryModal = ({ images, currentIndex, onClose, onNext, onPrev }) =>
           <>
             <button
               onClick={onPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p2 bg-black bg-opacity-50 rounded full text-white hover:bg-opacity-75 transition-all"
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 rounded-full
+                text-white hover:bg-white/20 hover:scale-110 transition-all duration-300
+                opacity-0 group-hover:opacity-100"
             >
               <ChevronLeft size={24} />
             </button>
             <button
               onClick={onNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black bg-opacity-50 rounded-full text-white hover:bg-opacity-75 transition-all"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 rounded-full
+                text-white hover:bg-white/20 hover:scale-110 transition-all duration-300
+                opacity-0 group-hover:opacity-100"
             >
               <ChevronRight size={24} />
             </button>
@@ -76,7 +103,17 @@ const ProjectCard = ({ project }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleNext = (specificIndex) => {
+ // Get image styles
+  const getImageProps = (image) => {
+  return {
+    objectFit: image?.style?.objectFit || project.imageStyle || "cover",
+    objectPosition: image?.style?.position || project.imagePosition || "center",
+  };
+};
+
+
+
+  const handleNext = useCallback((specificIndex) => {
     if (typeof specificIndex === 'number') {
       setCurrentImageIndex(specificIndex);
     } else {
@@ -84,18 +121,18 @@ const ProjectCard = ({ project }) => {
         prev === project.images.length -1 ? 0 : prev + 1
       );
     }
-  };
+  }, [project.images.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setCurrentImageIndex((prev) =>
     prev === 0 ? project.images.length - 1 : prev - 1
     );
-  };
+  }, [project.images.length]);
 
   return (
-    <div className="group flex flex-col md:flex-row gap-4 bg-white dark:bg-gray-900 transition-all duration-300">
+    <div className="group flex flex-col md:flex-row gap-6 bg-white dark:bg-gray-900 rounded-2xl hover:shadow-xl p-6 mb-6 transition-all duration-500 ease-in-out">
       <div
-        className="relative w-full md:w-3/5 aspect-[24/14] overflow-hidden rounded-xl cursor-pointer"
+        className="relative w-full md:w-3/5 aspect-[24/16] overflow-hidden rounded-xl cursor-pointer"
         onClick={() => setIsGalleryOpen(true)}
       >
         <Image
@@ -103,25 +140,34 @@ const ProjectCard = ({ project }) => {
           alt={project.images[0].alt}
           fill
           quality={100}
-          className="object-cover transition-transform duration-300 ease-in-out"
+          {...getImageProps(project.images[0])}
+          className=""
           sizes="(max-width: 768px) 100vw, 50vw"
         />
 
         {project.images.length > 1 && (
-          <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 px-3 py-1 rounded-full text-white text-sm">
+          <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm
+          transform transition-all duration-300 translate-y-1 opacity-90 group-hover:translate-y-0 group-hover:opacity-100">
             {project.images.length} images
           </div>
         )}
+
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10
+          transition-all duration-300">
+        </div>
       </div>
 
       <div className="flex flex-col w-full md:w-2/5">
-        <h3 className="text-3xl font-bold mb-4 font-space text-gray-900 dark:text-gray-100">
+        <h3 className="text-2xl font-bold mb-4 font-space text-gray-900 dark:text-gray-100
+          transform transition-all duration-300 group-hover:translate-x-1">
           {project.title}
         </h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-bold font-albert">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-bold font-albert
+          transform transition-all duration-300 delay-75 group-hover:translate-x-1">
           {project.subtitle}
         </p>
-        <p className="text-gray-600 dark:text-gray-300 font-albert">
+        <p className="text-gray-600 dark:text-gray-300 font-albert
+          transform transition-all duration-300 delay-100 group-hover:translate-x-1">
           {project.description}
         </p>
       </div>
