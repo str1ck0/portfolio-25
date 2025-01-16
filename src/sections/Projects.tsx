@@ -6,8 +6,39 @@ const Projects = () => {
   const projects = [
     {
       title: "Circles",
-      subtitle: "Ruby on Rails • Bootstrap • Heroku",
-      description: "A full stack Ruby on Rails web app, Circles is an event-centric social media platform that makes planning events with your friends easy.",
+    subtitle: "Ruby on Rails • Bootstrap • Heroku",
+    description: {
+      summary: "A full stack Ruby on Rails web app, Circles is an event-centric social media platform that makes planning events with your friends easy.",
+      paragraphs: [
+        "Built with Ruby on Rails and modern frontend technologies, Circles streamlines the event planning process.",
+        "Implemented real-time notifications and updates using Action Cable."
+      ],
+      technologies: [
+        "Ruby on Rails",
+        "PostgreSQL",
+        "Bootstrap",
+        "Heroku",
+        "Action Cable"
+      ],
+      challenges: [
+        "Implementing real-time updates for event changes",
+        "Managing complex user permissions"
+      ],
+      outcomes: [
+        "Successfully deployed to production",
+        "Positive user feedback on interface"
+      ],
+      links: [
+        {
+          title: "Live Demo",
+          url: "https://circles-app.herokuapp.com"
+        },
+        {
+          title: "GitHub",
+          url: "https://github.com/str1ck0/circles"
+        }
+      ]
+    },
       images: [
         {
           url: "/images/projects/circles_home.png",
