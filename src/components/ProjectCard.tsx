@@ -3,9 +3,17 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
-const ImageGalleryModal = ({ images, currentIndex, onClose, onNext, onPrev }) => {
+interface ImageGalleryModalProps {
+  images: { url: string; alt: string }[];
+  currentIndex: number;
+  onClose: () => void;
+  onNext: (index?: number) => void;
+  onPrev: () => void;
+}
+
+const ImageGalleryModal: React.FC<ImageGalleryModalProps> = ({ images, currentIndex, onClose, onNext, onPrev }) => {
   // Handle keyboard nav
-  const handleKeyPress = useCallback((e) => {
+  const handleKeyPress = useCallback((e: KeyboardEvent) => {
     if (e.key === 'Escape') onClose();
     if (e.key === 'ArrowRight') onNext();
     if (e.key === 'ArrowLeft') onPrev();
@@ -64,7 +72,7 @@ const ImageGalleryModal = ({ images, currentIndex, onClose, onNext, onPrev }) =>
               <ChevronLeft size={24} />
             </button>
             <button
-              onClick={onNext}
+              onClick={() => onNext()}
               className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-black/50 rounded-full
                 text-white hover:bg-white/20 hover:scale-110 transition-all duration-300
                 opacity-0 group-hover:opacity-100"
@@ -99,12 +107,21 @@ const ImageGalleryModal = ({ images, currentIndex, onClose, onNext, onPrev }) =>
   )
 }
 
-const ProjectCard = ({ project }) => {
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  images: { url: string; alt: string; style?: { objectFit?: string; position?: string } }[];
+  imageStyle?: string;
+  imagePosition?: string;
+}
+
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
  // Get image styles
-  const getImageProps = (image) => {
+  const getImageProps = (image: { style?: { objectFit?: string; position?: string } }) => {
   return {
     objectFit: image?.style?.objectFit || project.imageStyle || "cover",
     objectPosition: image?.style?.position || project.imagePosition || "center",
@@ -113,7 +130,7 @@ const ProjectCard = ({ project }) => {
 
 
 
-  const handleNext = useCallback((specificIndex) => {
+  const handleNext = useCallback((specificIndex: number | undefined) => {
     if (typeof specificIndex === 'number') {
       setCurrentImageIndex(specificIndex);
     } else {

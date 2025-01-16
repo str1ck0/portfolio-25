@@ -1,5 +1,4 @@
 'use client'
-import { ReactNode } from 'react';
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { ReactNode, MouseEvent } from 'react';
 
