@@ -1,7 +1,7 @@
 "use client"
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
+import { ChevronLeft, ChevronRight, X } from "lucide-react"
 
 const ImageGalleryModal = ({ images, currentIndex, onClose, onNext, onPrev }) => {
   // Handle keyboard nav
@@ -141,7 +141,6 @@ const ProjectCard = ({ project }) => {
           fill
           quality={100}
           {...getImageProps(project.images[0])}
-          className=""
           sizes="(max-width: 768px) 100vw, 50vw"
         />
 
