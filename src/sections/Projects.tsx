@@ -11,7 +11,12 @@ const Projects = () => {
       images: [
         {
           url: "/images/projects/circles_home.png",
-          alt: "Circles project"
+          alt: "Circles project",
+          style: {
+            objectFit: "cover",
+            position: "left"
+          }
+
         },
         {
           url: "/images/projects/circles_event.png",
@@ -21,23 +26,39 @@ const Projects = () => {
     },
     {
       title: "Tempo Libero",
-      subtitle: "React • Node.js • MongoDB",
-      description: "A brief description of the first project and its key features. This showcases the main accomplishments and technologies used.",
+      subtitle: "Photoshop • Illustrator • Creative Design",
+      imageStyle: "object-cover", // shows full image, may leave empty space
+      description: "Rolling papers artwork, designed in collaboration with Foolish as part of a limited product release.",
       images: [
         {
           url: "/images/projects/foolish-1.png",
-          alt: "Tempo project"
+          alt: "Tempo project",
+          style: {
+            objectFit: "cover",
+            position: "left"
+          }
         },
       ]
     },
     {
       title: "Gold Cloud",
       subtitle: "Ruby on Rails • Bootstrap • Heroku",
-      description: "Feature-rich store custom built for a premium medical cannabis supplier in Johannesburg",
+      description: "Custom built Ruby on Rails store for a premium medical cannabis supplier in Joburg.",
       images: [
         {
-          url: "/images/projects/goldcloud-1.png",
-          alt: "Gold Cloud Project"
+          url: "/images/projects/gc-cart.png",
+          alt: "Gold Cloud Project",
+          style: {
+            objectFit: "cover",
+            position: "top"
+          }
+        },{
+          url: "/images/projects/gc-home.png",
+          alt: "Gold Cloud Project",
+          style: {
+            objectFit: "none",
+            position: "top"
+          }
         },
       ]
     },
@@ -45,19 +66,42 @@ const Projects = () => {
       title: "Garden Elegance",
       subtitle: "Wordpress • Elementor • WooCommerce",
       description: "Website design and WooCommerce online store integration for Perth retail garden centre.",
-      imageUrl: "/images/projects/grain.png",
+      imageStyle: "object-cover",
       images: [
         {
-          url: "/images/projects/grain.png",
-          alt: "Garden Elegance Project"
+          url: "/images/projects/ge-home.png",
+          alt: "Garden Elegance Project",
+          style: {
+            objectFit: "cover",
+            position: "left"
+          }
         },
+        {
+          url: "/images/projects/ge-about.png",
+          alt: "Garden Elegance Project about"
+        }
+      ]
+    },
+    {
+      title: "Le Wagon Tee Design",
+      subtitle: "Illustrator • Photoshop",
+      description: "Illustrated design for Le Wagon Cape Town 2025",
+      images: [
+        {
+          url: "/images/projects/lewagon-tee.png",
+          alt: "Le Wagon Tee",
+          style: {
+            objectFit: "cover",
+            position: "bottom"
+          }
+        }
       ]
     }
   ];
 
   return (
     <section id="projects" className="w-full max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-4xl text-center font-bold mb-16 font-space dark:text-gray-100">
+      <h2 className="text-3xl md:text-4xl text-center font-bold mb-16 font-space dark:text-gray-100">
         Projects
       </h2>
 
