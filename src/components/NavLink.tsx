@@ -1,27 +1,30 @@
 'use client'
-import { useActiveSection } from '@/hooks/useActiveSection'
-import { ReactNode, MouseEvent } from 'react';
 
+import { useActiveSection } from '@/hooks/useActiveSection'
+import { ReactNode, MouseEvent } from 'react'
 
 interface NavLinkProps {
-  href: string;
-  children: ReactNode;
+  href: string
+  children: ReactNode
+  className?: string
+  onClick?: () => void
 }
 
-const NavLink = ({ href, children }: NavLinkProps) => {
-  const sectionId = href.replace('#', '');
-  const activeSection = useActiveSection();
+const NavLink = ({ href, children, className = '', onClick }: NavLinkProps) => {
+  const sectionId = href.replace('#', '')
+  const activeSection = useActiveSection()
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    const element = document.getElementById(sectionId);
+    event.preventDefault()
+    const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
-      });
+      })
     }
-  };
+    onClick?.() // Call onClick if provided (for mobile menu closing)
+  }
 
   return (
     <a
@@ -40,10 +43,12 @@ const NavLink = ({ href, children }: NavLinkProps) => {
         after:mt-0.5
         after:transition-all after:duration-300
         after:origin-left after:ease-in-out
-      `}    >
+        ${className}
+      `}
+    >
       {children}
     </a>
-  );
-};
+  )
+}
 
-export default NavLink;
+export default NavLink
