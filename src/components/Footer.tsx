@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <footer className="w-full font-space bg-teal-500/50 dark:bg-teal-800 text-white">
+    <footer className="mt-16 w-full font-space bg-teal-500/50 dark:bg-teal-800 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24">
           <h1 className="text-lg">© Liam Strickland 2025</h1>
