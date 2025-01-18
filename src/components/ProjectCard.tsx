@@ -14,7 +14,7 @@ interface ProjectDetails {
   summary?: string;
   paragraphs?: string[];
   technologies?: string[];
-  challenges?: string[];
+  features?: string[];
   outcomes?: string[];
   links?: {
     title: string;
@@ -25,7 +25,7 @@ interface ProjectDetails {
 
 interface Project {
   title: string;
-  subtitle: string;
+  subtitle?: string; //optional 
   description: string | ProjectDetails;
   images: {
     url: string;
@@ -80,49 +80,38 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
     const details = project.description as ProjectDetails;
 
     return (
-      <div className="space-y-4">
+      <div className="space-y-8">
         {details.summary && (
-          <p className="text-gray-600 dark:text-gray-300 font-albert transform
-            transition-all duration-300 delay-100 group-hover:translate-x-1">
-            {details.summary}
-          </p>
-        )}
-
-        {isExpanded && (
-          <>
-            {details.paragraphs?.map((paragraph, index) => (
-              <p key={index} className="text-gray-600 dark:text-gray-300 font-albert transform
-                transition-all duration-300 delay-100 group-hover:translate-x-1">
-                {paragraph}
-              </p>
-            ))}
-
-            {details.technologies && (
-              <div className="mt-4">
-                <h4 className="text-lg font-bold mb-2 text-gray-900 dark:text-gray-100">
-                  Technologies Used
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {details.technologies.map((tech, index) => (
-                    <span key={index}
-                      className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full
-                      text-sm text-gray-700 dark:text-gray-300">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+          <div> {/* Wrapper div to be part of space-y-8 flow */}
+            <p className="text-gray-600 dark:text-gray-300 font-albert transform
+              transition-all duration-300 delay-100 group-hover:translate-x-1">
+              {details.summary}
+            </p>
+  
+            {isExpanded && details.paragraphs && details.paragraphs.length > 0 && (
+              <div className="mt-4 space-y-4">  {/* mt-4 to match paragraph spacing */}
+                {details.paragraphs.map((paragraph, index) => (
+                  <p key={index} className="text-gray-600 dark:text-gray-300 font-albert transform
+                    transition-all duration-300 delay-100 group-hover:translate-x-1">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             )}
-
-            {details.challenges && (
+          </div>
+        )}
+        
+        {isExpanded && (
+          <>
+            {details.features && (
               <div className="mt-4">
-                <h4 className="text-lg font-bold mb-2 text-gray-900 dark:text-gray-100">
-                  Challenges
+                <h4 className="text-lg font-space font-bold mb-4 text-gray-900 dark:text-gray-100">
+                  Features
                 </h4>
                 <ul className="list-disc list-inside space-y-2">
-                  {details.challenges.map((challenge, index) => (
-                    <li key={index} className="text-gray-600 dark:text-gray-300">
-                      {challenge}
+                  {details.features.map((feature, index) => (
+                    <li key={index} className="font-albert text-gray-600 dark:text-gray-300">
+                      {feature}
                     </li>
                   ))}
                 </ul>
@@ -131,12 +120,12 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
             {details.outcomes && (
               <div className="mt-4">
-                <h4 className="text-lg font-bold mb-2 text-gray-900 dark:text-gray-100">
+                <h4 className="text-lg font-space font-bold mb-2 text-gray-900 dark:text-gray-100">
                   Key Outcomes
                 </h4>
                 <ul className="list-disc list-inside space-y-2">
                   {details.outcomes.map((outcome, index) => (
-                    <li key={index} className="text-gray-600 dark:text-gray-300">
+                    <li key={index} className="font-albert text-gray-600 dark:text-gray-300">
                       {outcome}
                     </li>
                   ))}
@@ -152,7 +141,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100
+                    className=" font-space inline-flex items-center gap-2 px-4 py-2 bg-gray-100
                       dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700
                       transition-colors duration-200"
                   >
@@ -166,7 +155,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-2 text-blue-600 dark:text-blue-400
+          className="font-space flex items-center gap-2 text-teal-500 dark:text-teal-500
             hover:underline mt-2"
         >
           {isExpanded ? (
@@ -219,10 +208,28 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           transform transition-all duration-300 group-hover:translate-x-1">
           {project.title}
         </h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-bold font-albert
-          transform transition-all duration-300 delay-75 group-hover:translate-x-1">
-          {project.subtitle}
-        </p>
+
+        {typeof project.description !== 'string' && project.description.technologies && (
+          <div className="mb-4 flex flex-wrap gap-2 transform transition-all duration-300 group-hover:translate-x-1">
+            {project.description.technologies.map((tech, index) => (
+              <span key={index}
+                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 
+                dark:hover:bg-gray-700 rounded-full text-sm text-gray-700 
+                dark:text-gray-300 font-albert transition-colors duration-200">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* If there's a subtitle, still render it (optional) */}
+        {project.subtitle && (
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 font-bold font-albert
+            transform transition-all duration-300 delay-75 group-hover:translate-x-1">
+            {project.subtitle}
+          </p>
+        )}
+
         {renderDescription()}
       </div>
 

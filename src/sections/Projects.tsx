@@ -6,39 +6,39 @@ const Projects = () => {
   const projects = [
     {
       title: "Circles",
-    subtitle: "Ruby on Rails • Bootstrap • Heroku",
-    description: {
-      summary: "A full stack Ruby on Rails web app, Circles is an event-centric social media platform that makes planning events with your friends easy.",
-      paragraphs: [
-        "Built with Ruby on Rails and modern frontend technologies, Circles streamlines the event planning process.",
-        "Implemented real-time notifications and updates using Action Cable."
-      ],
-      technologies: [
-        "Ruby on Rails",
-        "PostgreSQL",
-        "Bootstrap",
-        "Heroku",
-        "Action Cable"
-      ],
-      challenges: [
-        "Implementing real-time updates for event changes",
-        "Managing complex user permissions"
-      ],
-      outcomes: [
-        "Successfully deployed to production",
-        "Positive user feedback on interface"
-      ],
-      links: [
-        {
-          title: "Live Demo",
-          url: "https://circles-app.herokuapp.com"
-        },
-        {
-          title: "GitHub",
-          url: "https://github.com/str1ck0/circles"
-        }
-      ]
-    },
+      description: {
+        summary: "A full stack Ruby on Rails web app, Circles is an event-centric social media platform that makes planning events within your social circles easy.",
+        paragraphs: [
+          "I lead a team of 4 developers to build Circles from scratch in 10 days as the final project for Le Wagon's Full Stack Web Development bootcamp.",
+          "The feature-rich app allows users to create and invite others into circles, create public or private events and invite their friends or cirles, chat live with action cable, share Spotify playlists and more."
+        ],
+        technologies: [
+          "Ruby on Rails",
+          "PostgreSQL",
+          "Bootstrap",
+          "Javascript",
+          "Heroku",
+          "Action Cable"
+        ],
+        features: [
+          "Implementing real-time updates for event changes",
+          "Managing complex user permissions"
+        ],
+        outcomes: [
+          "Deployed to production on Heroku (no longer live)",
+          "Demoed at Le Wagon's #989 Demo Day to a live audience"
+        ],
+        links: [
+          {
+            title: "Live Demo",
+            url: "#"
+          },
+          {
+            title: "GitHub",
+            url: "https://github.com/ch0rizo/Circles"
+          }
+        ]
+      },
       images: [
         {
           url: "/images/projects/circles_home.png",
@@ -56,13 +56,124 @@ const Projects = () => {
       ]
     },
     {
-      title: "Tempo Libero",
-      subtitle: "Photoshop • Illustrator • Creative Design",
-      imageStyle: "object-cover", // shows full image, may leave empty space
-      description: "Rolling papers artwork, designed in collaboration with Foolish as part of a limited product release.",
+      title: "Boro",
+      description: {
+        summary: "A p2p marketplace for the sharing economy. Borrow or lend any asset! Buy less, share more.",
+        paragraphs: [
+          "The idea for borrow came from a desire to fight rampant consumerism and over-production and instead share anything within local communities.",
+        ],
+        technologies: [
+          "Figma",
+          "Ruby on Rails",
+          "PostgreSQL",
+          "Heroku",
+          "Adobe CC"
+        ],
+        features: [
+          "Functioning Figma prototype",
+          "Brand identify and style guide"
+        ],
+        outcomes: [
+          "Deployed to production on Heroku (no longer live)",
+        ],
+        links: [
+          {
+            title: "Figma",
+            url: "https://www.figma.com/proto/xuUgQ7edNWQ1SqAg3FVjHF/BORO-2.0-(Copy)?node-id=524-245&t=V9HWhSd11W46CrNX-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1"
+          },
+          {
+            title: "GitHub",
+            url: "https://github.com/ch0rizo/BORO"
+          }
+        ]
+      },
+      images: [
+        {
+          url: "/images/projects/Boro/BoroSplash.png",
+          alt: "Boro Account Page",
+          style: {
+            objectFit: "cover",
+            position: "left"
+          }
+        },
+        {
+          url: "/images/projects/Boro/BoroIntro.png",
+          alt: "Boro Chats Interface"
+        },
+        {
+          url: "/images/projects/Boro/BoroLogin.png",
+          alt: "Boro Chats Interface"
+        },
+        {
+          url: "/images/projects/Boro/BoroHome.png",
+          alt: "Boro Conversation View"
+        },
+        {
+          url: "/images/projects/Boro/BoroExplore.png",
+          alt: "Boro Explore Page"
+        },
+        {
+          url: "/images/projects/Boro/BoroKayaks.png",
+          alt: "Boro Home Page"
+        },
+        {
+          url: "/images/projects/Boro/BoroChats.png",
+          alt: "Boro Introduction Screen"
+        },
+        {
+          url: "/images/projects/Boro/BoroConversation.png",
+          alt: "Boro Kayaks Feature"
+        },
+        {
+          url: "/images/projects/Boro/BoroLend.png",
+          alt: "Boro Lending Interface"
+        },
+        {
+          url: "/images/projects/Boro/BoroAccount.png",
+          alt: "Boro Login Page"
+        },
+      ]
+    },
+    {
+      title: "Foolish - Cartine di Qualità",
+      description: {
+        summary: "Rolling papers artwork, designed in collaboration with Foolish as part of a limited 'Leisure Time' product release.",
+        paragraphs: [
+        ],
+        technologies: [
+          "Adobe Illustrator",
+          "Adobe Photoshop",
+          "Ink on paper"
+        ],
+        features: [
+          "Artwork and die-cut design for rolling papers packaging.",
+        ],
+        outcomes: [
+          "Limited run of 500 packs manufactured and sold",
+          "Featured in Foolish's online store"
+        ],
+        links: [
+        ]
+      },
       images: [
         {
           url: "/images/projects/foolish-1.png",
+          alt: "Tempo project",
+          style: {
+            objectFit: "cover",
+            position: "left"
+          }
+        },
+        {
+          url: "/images/projects/FoolishPapersFront.png",
+          alt: "Tempo project",
+          style: {
+            objectFit: "cover",
+            position: "left"
+          }
+        },
+        {
+          url: "/images/projects/FoolishPapersInner.png",
           alt: "Tempo project",
           style: {
             objectFit: "cover",
