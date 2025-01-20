@@ -37,7 +37,7 @@ const About = () => {
                 >
                   Le Wagon
                 </a>
-                in Cape Town and Berlin. I've lead dozens of student teams building full stack Ruby on Rails web apps.
+                in Cape Town and Berlin. I've led dozens of student teams building full stack Ruby on Rails web apps.
               </p>
 
               <p className="text-md md:text-lg font-albert">

@@ -9,8 +9,8 @@ const Projects = () => {
       description: {
         summary: "A full stack Ruby on Rails web app, Circles is an event-centric social media platform that makes planning events within your social circles easy.",
         paragraphs: [
-          "I lead a team of 4 developers to build Circles from scratch in 10 days as the final project for Le Wagon's Full Stack Web Development bootcamp.",
-          "The feature-rich app allows users to create and invite others into circles, create public or private events and invite their friends or cirles, chat live with action cable, share Spotify playlists and more."
+          "I led a team of 4 developers to build Circles from scratch in 10 days as the final project for Le Wagon's Full Stack Web Development bootcamp.",
+          "The feature-rich app allows users to create and invite others into circles, create public or private events and invite their friends or circles, chat live with action cable, share Spotify playlists and more."
         ],
         technologies: [
           "Ruby on Rails",
