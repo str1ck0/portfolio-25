@@ -8,7 +8,8 @@ const Hero = () => {
           G&apos;day, I&apos;m <span className="text-teal-500">Liam</span>
         </h1>
         <p className="mt-6 md:mt-8 text-2xl font-albert text-gray-600 dark:text-gray-400">
-          I&apos;m a freelance web designer & full stack developer.
+          I&apos;m a freelance full stack web developer, designer & project leader.
+
         </p>
         <button
           onClick={() => {

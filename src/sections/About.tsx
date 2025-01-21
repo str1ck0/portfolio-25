@@ -42,18 +42,19 @@ const About = () => {
 
               <p className="text-md md:text-lg font-albert">
                 A jack of all trades, I combine my skills in digital design and
-                full stack web development to create beautiful, functional websites and apps.
-
+                full stack web development to create beautiful, functional and 
+                performant websites and apps. Creativity, curiosity and design thinking
+                inform my approach to solving problems and delivering quality solutions.
               </p>
 
               <p className="text-md md:text-lg font-albert">
-                I'm always on the hunt for my next opportunity to work with talented people
-                on creative and meaningful projects. Let's team up!
+                I thrive when working in a team and am always on the hunt for my next opportunity to
+                collaborate with talented people on creative and meaningful projects. Let's team up!
               </p>
             </div>
 
             {/* CTA Button with responsive positioning */}
-            <div className="mt-12 md:mt-12 flex justify-center md:justify-start">
+            <div className="mt-8 md:mt-8 flex justify-center md:justify-start">
               <a
                 href="mailto:liam.strickland96@gmail.com"
                 className="inline-block text-gray-900 dark:text-gray-100 px-6 py-2 text-lg md:text-xl
