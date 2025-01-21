@@ -42,7 +42,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Liam Strickland",
-  description: "Freelance web designer & developer",
+  description: "Full Stack Developer & Designer",
   icons: {
     icon: [
       { url: '/favicon.ico' }
