@@ -65,13 +65,14 @@ const Projects = () => {
         technologies: [
           "Figma",
           "Ruby on Rails",
+          "Bootstrap",
           "PostgreSQL",
           "Heroku",
           "Adobe CC"
         ],
         features: [
-          "Functioning Figma prototype",
-          "Brand identify and style guide"
+          "Functioning Figma prototype & Rails MVP",
+          "Brand identity and style guide"
         ],
         outcomes: [
           "Deployed to production on Heroku (no longer live)",
@@ -89,47 +90,71 @@ const Projects = () => {
       },
       images: [
         {
-          url: "/images/projects/Boro/BoroSplash.png",
-          alt: "Boro Account Page",
+          url: "/images/projects/Boro/boro-splash.png",
+          alt: "Boro Prototype",
           style: {
             objectFit: "cover",
             position: "left"
           }
         },
         {
-          url: "/images/projects/Boro/BoroIntro.png",
+          url: "/images/projects/Boro/boro-intro1.png",
+          alt: "Boro Prototype"
+        },
+        {
+          url: "/images/projects/Boro/boro-intro2.png",
           alt: "Boro Chats Interface"
         },
         {
-          url: "/images/projects/Boro/BoroLogin.png",
-          alt: "Boro Chats Interface"
-        },
-        {
-          url: "/images/projects/Boro/BoroHome.png",
+          url: "/images/projects/Boro/boro-intro3.png",
           alt: "Boro Conversation View"
         },
         {
-          url: "/images/projects/Boro/BoroExplore.png",
+          url: "/images/projects/Boro/boro-intro4.png",
           alt: "Boro Explore Page"
         },
         {
-          url: "/images/projects/Boro/BoroKayaks.png",
+          url: "/images/projects/Boro/boro-login.png",
+          alt: "Boro Explore Page"
+        },
+        {
+          url: "/images/projects/Boro/boro-home.png",
           alt: "Boro Home Page"
         },
         {
-          url: "/images/projects/Boro/BoroChats.png",
+          url: "/images/projects/Boro/boro-item.png",
           alt: "Boro Introduction Screen"
         },
         {
-          url: "/images/projects/Boro/BoroConversation.png",
+          url: "/images/projects/Boro/boro-explore.png",
           alt: "Boro Kayaks Feature"
         },
         {
-          url: "/images/projects/Boro/BoroLend.png",
+          url: "/images/projects/Boro/boro-search.png",
           alt: "Boro Lending Interface"
         },
         {
-          url: "/images/projects/Boro/BoroAccount.png",
+          url: "/images/projects/Boro/boro-lend.png",
+          alt: "Boro Login Page"
+        },
+        {
+          url: "/images/projects/Boro/boro-chats.png",
+          alt: "Boro Login Page"
+        },
+        {
+          url: "/images/projects/Boro/boro-chat.png",
+          alt: "Boro Login Page"
+        },
+        {
+          url: "/images/projects/Boro/boro-account.png",
+          alt: "Boro Login Page"
+        },
+        {
+          url: "/images/projects/Boro/boro-account2.png",
+          alt: "Boro Login Page"
+        },
+        {
+          url: "/images/projects/Boro/boro-account3.png",
           alt: "Boro Login Page"
         },
       ]
@@ -184,18 +209,64 @@ const Projects = () => {
     },
     {
       title: "Gold Cloud",
-      subtitle: "Ruby on Rails • Bootstrap • Heroku",
-      description: "Custom built Ruby on Rails store for a premium medical cannabis supplier in Joburg.",
+      description: {
+        summary: "Custom built Ruby on Rails store for a premium medical cannabis supplier in Joburg.",
+        paragraphs: [
+        ],
+        technologies: [
+          "Ruby on Rails",
+          "Bootstrap",
+          "IHeroku"
+        ],
+        features: [
+          "Complete store functionality with admin, driver and user account types.",
+          "Product and package management, order tracking and delivery scheduling."
+        ],
+        outcomes: [
+          "Increased sales and customer satisfaction for Gold Cloud",
+        ],
+        links: [
+          {
+            title: "GitHub",
+            url: "https://github.com/ElonMuskOfficial-NotHugo/GoldCloud"
+          }
+        ]
+      },
       images: [
         {
-          url: "/images/projects/gc-cart.png",
+          url: "/images/projects/Goldcloud/cart-portrait.png",
           alt: "Gold Cloud Project",
           style: {
             objectFit: "cover",
             position: "top"
           }
-        },{
-          url: "/images/projects/gc-home.png",
+        },
+        {
+          url: "/images/projects/Goldcloud/store-home-portrait.png",
+          alt: "Gold Cloud Project",
+          style: {
+            objectFit: "none",
+            position: "top"
+          }
+        },
+        {
+          url: "/images/projects/Goldcloud/product-show-portrait.png",
+          alt: "Gold Cloud Project",
+          style: {
+            objectFit: "none",
+            position: "top"
+          }
+        },
+        {
+          url: "/images/projects/Goldcloud/splash-portrait.png",
+          alt: "Gold Cloud Project",
+          style: {
+            objectFit: "none",
+            position: "top"
+          }
+        },
+        {
+          url: "/images/projects/Goldcloud/add_product-portrait.png",
           alt: "Gold Cloud Project",
           style: {
             objectFit: "none",
@@ -206,9 +277,24 @@ const Projects = () => {
     },
     {
       title: "Garden Elegance",
-      subtitle: "Wordpress • Elementor • WooCommerce",
-      description: "Website design and WooCommerce online store integration for Perth retail garden centre.",
-      imageStyle: "object-cover",
+      description: {
+        summary: "WordPress website re-design and WooCommerce online store integration for Perth retail garden centre.",
+        paragraphs: [
+        ],
+        technologies: [
+          "WordPress",
+          "Elementor",
+          "WooCommerce",
+          "Flywheel Local"
+        ],
+        features: [
+          "Full WordPress website re-design and build using Elementor plugin.",
+          "WooCommerce plugin integration with store inventory and POS system for online store."
+        ],
+        outcomes: [
+          "Increased sales via new online store and customer engagement for Garden Elegance.",
+        ],
+      },
       images: [
         {
           url: "/images/projects/ge-home.png",
@@ -226,8 +312,20 @@ const Projects = () => {
     },
     {
       title: "Le Wagon Tee Design",
-      subtitle: "Illustrator • Photoshop",
-      description: "Illustrated design for Le Wagon Cape Town 2025",
+      description: {
+        summary: "Illustrated t-shirt design for Le Wagon Cape Town 2025",
+        paragraphs: [],
+        technologies: [
+          "Adobe Illustrator",
+          "Adobe Photoshop"
+        ],
+        features: [
+          "Custom drawn illustration for official Le Wagon Cape Town merchandise."
+        ],
+        outcomes: [
+          "Design used on graduate and staff t-shirts.",
+        ],
+      },
       images: [
         {
           url: "/images/projects/lewagon-tee.png",
