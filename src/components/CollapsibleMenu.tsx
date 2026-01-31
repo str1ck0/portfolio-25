@@ -1,0 +1,151 @@
+'use client'
+
+import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
+import { PortableText } from '@portabletext/react'
+import type { SiteSettings } from '@/lib/sanity'
+import AboutText from './AboutText'
+
+interface CollapsibleMenuProps {
+  settings: SiteSettings
+}
+
+type MenuSection = 'about' | 'stack' | 'contact' | null
+
+export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
+  const [expandedSection, setExpandedSection] = useState<MenuSection>(null)
+  const [lockedSection, setLockedSection] = useState<MenuSection>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setLockedSection(null)
+        setExpandedSection(null)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const handleMouseEnter = (section: MenuSection) => {
+    if (!lockedSection) {
+      setExpandedSection(section)
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (!lockedSection) {
+      setExpandedSection(null)
+    }
+  }
+
+  const handleClick = (section: MenuSection) => {
+    if (lockedSection === section) {
+      // Clicking the same locked section unlocks it
+      setLockedSection(null)
+      setExpandedSection(null)
+    } else {
+      // Lock this section
+      setLockedSection(section)
+      setExpandedSection(section)
+    }
+  }
+
+  const isExpanded = (section: MenuSection) => {
+    return expandedSection === section || lockedSection === section
+  }
+
+  const menuItems: { id: MenuSection; label: string }[] = [
+    { id: 'about', label: 'About' },
+    { id: 'stack', label: 'Stack' },
+    { id: 'contact', label: 'Contact' },
+  ]
+
+  return (
+    <nav ref={menuRef} className="flex flex-col gap-1" onMouseLeave={handleMouseLeave}>
+      {menuItems.map((item) => (
+        <div key={item.id} className="group">
+          {/* Menu Item Header */}
+          <button
+            className={`flex w-full items-center gap-2 py-1 text-left text-sm transition-colors ${
+              isExpanded(item.id) ? 'text-white' : 'text-white/50 hover:text-white/80'
+            }`}
+            onMouseEnter={() => handleMouseEnter(item.id)}
+            onClick={() => handleClick(item.id)}
+          >
+            <span
+              className={`inline-block h-1 w-1 rounded-full transition-all ${
+                isExpanded(item.id) ? 'bg-white' : 'bg-white/30'
+              }`}
+            />
+            {item.label}
+            {lockedSection === item.id && (
+              <span className="ml-1 text-xs text-white/30">●</span>
+            )}
+          </button>
+
+          {/* Expandable Content */}
+          <div
+            className={`menu-content ${isExpanded(item.id) ? 'expanded' : ''}`}
+          >
+            <div className="pl-3 pt-2 pb-3">
+              {item.id === 'about' && (
+                <div className="max-w-xs space-y-3">
+                  {/* Interactive about text */}
+                  {settings.aboutText && (
+                    <AboutText
+                      text={settings.aboutText}
+                      links={settings.aboutLinks || []}
+                    />
+                  )}
+
+                  {/* Extended about (Portable Text) */}
+                  {settings.extendedAbout && (
+                    <div className="prose prose-sm prose-invert max-w-none prose-p:text-white/60 prose-p:leading-relaxed">
+                      <PortableText value={settings.extendedAbout} />
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {item.id === 'stack' && settings.stack && settings.stack.length > 0 && (
+                <div className="flex max-w-xs flex-wrap gap-2">
+                  {settings.stack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded bg-white/10 px-2 py-1 font-mono text-xs text-white/60"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {item.id === 'contact' && (
+                <div className="space-y-2 text-sm">
+                  {settings.email && (
+                    <a
+                      href={`mailto:${settings.email}`}
+                      className="block text-white/60 transition-colors hover:text-white"
+                    >
+                      {settings.email}
+                    </a>
+                  )}
+                  <Link
+                    href="/blog"
+                    className="block text-white/60 transition-colors hover:text-white"
+                  >
+                    Blog →
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </nav>
+  )
+}

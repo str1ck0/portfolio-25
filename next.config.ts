@@ -17,8 +17,6 @@ const nextConfig: NextConfig = {
   },
   // Enable React strict mode for better error catching
   reactStrictMode: true,
-  // Use SWC minifier for faster builds
-  swcMinify: true,
   // Optimize production builds
   compiler: {
     // Remove console.logs in production
