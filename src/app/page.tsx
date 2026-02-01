@@ -15,10 +15,14 @@ export default async function Home() {
   // Fallback settings if none exist in Sanity yet
   const siteSettings = settings || {
     _id: 'default',
-    name: 'Your Name',
-    aboutText: 'I create things.',
-    stack: [],
-    social: [],
+    name: 'Liam Strickland',
+    aboutText: 'I write, code, design, and create.',
+    stack: ['TypeScript', 'React', 'Next.js', 'Node.js', 'Tailwind CSS'],
+    email: 'hello@liamstrickland.com',
+    social: [
+      { platform: 'github', url: 'https://github.com/str1ck0' },
+      { platform: 'linkedin', url: 'https://linkedin.com/in/liamstrickland' },
+    ],
   }
 
   return (

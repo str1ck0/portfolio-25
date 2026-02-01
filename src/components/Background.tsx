@@ -10,7 +10,7 @@ const PixelBlast = dynamic(() => import('./PixelBlast'), {
 
 export default function Background() {
   return (
-    <div className="fixed inset-0 z-0">
+    <div className="fixed inset-0 z-0 pointer-events-auto">
       <PixelBlast
         variant="circle"
         pixelSize={4}
@@ -24,6 +24,10 @@ export default function Background() {
         speed={0.3}
         edgeFade={0.3}
         transparent={true}
+        liquid={true}
+        liquidStrength={0.15}
+        liquidRadius={1.5}
+        liquidWobbleSpeed={3}
       />
     </div>
   )

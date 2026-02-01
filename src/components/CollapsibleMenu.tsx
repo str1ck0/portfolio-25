@@ -44,11 +44,9 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
 
   const handleClick = (section: MenuSection) => {
     if (lockedSection === section) {
-      // Clicking the same locked section unlocks it
       setLockedSection(null)
       setExpandedSection(null)
     } else {
-      // Lock this section
       setLockedSection(section)
       setExpandedSection(section)
     }
@@ -65,12 +63,12 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
   ]
 
   return (
-    <nav ref={menuRef} className="flex flex-col gap-1" onMouseLeave={handleMouseLeave}>
+    <nav ref={menuRef} className="flex flex-col" onMouseLeave={handleMouseLeave}>
       {menuItems.map((item) => (
-        <div key={item.id} className="group">
+        <div key={item.id}>
           {/* Menu Item Header */}
           <button
-            className={`flex w-full items-center gap-2 py-1 text-left text-sm transition-colors ${
+            className={`flex w-full items-center gap-2 py-1.5 text-left text-sm transition-colors ${
               isExpanded(item.id) ? 'text-white' : 'text-white/50 hover:text-white/80'
             }`}
             onMouseEnter={() => handleMouseEnter(item.id)}
@@ -87,22 +85,21 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
             )}
           </button>
 
-          {/* Expandable Content */}
+          {/* Expandable Content - only render when expanded */}
           <div
-            className={`menu-content ${isExpanded(item.id) ? 'expanded' : ''}`}
+            className={`overflow-hidden transition-all duration-300 ease-out ${
+              isExpanded(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}
           >
-            <div className="pl-3 pt-2 pb-3">
+            <div className="pl-3 pt-1 pb-3">
               {item.id === 'about' && (
                 <div className="max-w-xs space-y-3">
-                  {/* Interactive about text */}
                   {settings.aboutText && (
                     <AboutText
                       text={settings.aboutText}
                       links={settings.aboutLinks || []}
                     />
                   )}
-
-                  {/* Extended about (Portable Text) */}
                   {settings.extendedAbout && (
                     <div className="prose prose-sm prose-invert max-w-none prose-p:text-white/60 prose-p:leading-relaxed">
                       <PortableText value={settings.extendedAbout} />
@@ -111,9 +108,9 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
                 </div>
               )}
 
-              {item.id === 'stack' && settings.stack && settings.stack.length > 0 && (
+              {item.id === 'stack' && (
                 <div className="flex max-w-xs flex-wrap gap-2">
-                  {settings.stack.map((tech) => (
+                  {(settings.stack && settings.stack.length > 0 ? settings.stack : ['No stack defined']).map((tech) => (
                     <span
                       key={tech}
                       className="rounded bg-white/10 px-2 py-1 font-mono text-xs text-white/60"
