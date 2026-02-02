@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
 import type { SiteSettings } from '@/lib/sanity'
 import AboutText from './AboutText'
+import SocialIcons from './SocialIcons'
 
 interface CollapsibleMenuProps {
   settings: SiteSettings
@@ -68,21 +69,13 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
         <div key={item.id}>
           {/* Menu Item Header */}
           <button
-            className={`flex w-full items-center gap-2 py-1.5 text-left text-sm transition-colors ${
+            className={`w-full py-1.5 text-left text-sm transition-colors ${
               isExpanded(item.id) ? 'text-white' : 'text-white/50 hover:text-white/80'
             }`}
             onMouseEnter={() => handleMouseEnter(item.id)}
             onClick={() => handleClick(item.id)}
           >
-            <span
-              className={`inline-block h-1 w-1 rounded-full transition-all ${
-                isExpanded(item.id) ? 'bg-white' : 'bg-white/30'
-              }`}
-            />
             {item.label}
-            {lockedSection === item.id && (
-              <span className="ml-1 text-xs text-white/30">●</span>
-            )}
           </button>
 
           {/* Expandable Content - only render when expanded */}
@@ -122,7 +115,7 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
               )}
 
               {item.id === 'contact' && (
-                <div className="space-y-2 text-sm">
+                <div className="space-y-3 text-sm">
                   {settings.email && (
                     <a
                       href={`mailto:${settings.email}`}
@@ -130,6 +123,9 @@ export default function CollapsibleMenu({ settings }: CollapsibleMenuProps) {
                     >
                       {settings.email}
                     </a>
+                  )}
+                  {settings.social && settings.social.length > 0 && (
+                    <SocialIcons social={settings.social} />
                   )}
                   <Link
                     href="/blog"
